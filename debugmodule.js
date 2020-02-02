@@ -22,8 +22,6 @@
   // constructionmodule: true
   // createprocessmodule: true
   // encryptionmodule: true
-  // githubservicemodule: true
-  // gitlabservicemodule: true
   // gitmodule: true
   // globalscopemodule: true
   // pathhandlermodule: true
