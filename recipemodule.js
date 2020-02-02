@@ -595,14 +595,18 @@
   };
 
   recipemodule.getRecipe = async function(thingyType) {
-    var err, latestChosenType, message, recipe, thingyRecipes, userChoice, userChoices;
+    var err, latestChosenType, message, recipe, result, thingyRecipes, userChoice, userChoices;
     log("recipemodule.getRecipe");
     thingyRecipes = userConfig.getThingyRecipes();
     latestChosenType = thingyType;
+    result = {};
     if (!thingyType || (thingyRecipes[thingyType] == null)) {
       if (thingyType) {
         try {
-          return (await recipemodule.getModuleRecipe(thingyType));
+          recipe = (await recipemodule.getModuleRecipe(thingyType));
+          result.recipe = recipe;
+          result.type = thingyType;
+          return result;
         } catch (error1) {
           err = error1;
           log(err);
@@ -613,10 +617,14 @@
       userChoice = (await user.inquireUserDecision(userChoices, message));
       latestChosenType = userChoice;
       recipe = (await loadRecipe(userChoice));
-      return recipe;
+      result.recipe = recipe;
+      result.type = userChoice;
+      return result;
     } else {
       recipe = (await loadRecipe(thingyType));
-      return recipe;
+      result.recipe = recipe;
+      result.type = thingyType;
+      return result;
     }
   };
 

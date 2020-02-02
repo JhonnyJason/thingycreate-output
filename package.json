@@ -1,6 +1,6 @@
 {
     "name": "thingycreate",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "Wizard to create any thingy",
     "main": "index.js",
     "scripts": {
@@ -33,12 +33,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/JhonnyJason/thingycreate-as-thingy.git"
+        "url": "git+https://github.com/JhonnyJason/thingycreate.git"
     },
     "bugs": {
-        "url": "https://github.com/JhonnyJason/thingycreate-as-thingy/issues"
+        "url": "https://github.com/JhonnyJason/thingycreate/issues"
     },
-    "homepage": "https://github.com/JhonnyJason/thingycreate-as-thingy-output#readme",
+    "homepage": "https://github.com/JhonnyJason/thingycreate-output#readme",
     "dependencies": {
         "@octokit/rest": "^16.41.1",
         "chalk": "^3.0.0",
