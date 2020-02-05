@@ -58,6 +58,20 @@
     await git(base).add(".");
   };
 
+  gitmodule.add = async function(base, path) {
+    var result;
+    log("gitmodule.addAll");
+    result = (await git(base).add(path));
+    return result;
+  };
+
+  gitmodule.commit = async function(base, message) {
+    var result;
+    log("gitmodule.commit");
+    result = (await git(base).commit(message));
+    return result;
+  };
+
   gitmodule.init = async function(base, remote) {
     log("gitmodule.init");
     await git(base).init();
@@ -90,6 +104,55 @@
       throw "No URL to clone available for RemoteObject!";
     }
     await git(base).clone(url);
+  };
+
+  gitmodule.stash = async function(base) {
+    var result;
+    log("gitmodule.stash");
+    result = (await git(base).stash());
+    return result;
+  };
+
+  gitmodule.stashPop = async function(base) {
+    var result;
+    log("gitmodule.stashPop");
+    result = (await git(base).stash(["pop"]));
+    return result;
+  };
+
+  gitmodule.restoreStaged = async function(base, path) {
+    var result;
+    log("gitmodule.restoreStaged");
+    result = (await git(base).raw(['restore', '--staged', path]));
+    return result;
+  };
+
+  gitmodule.deinitSubmodule = async function(base, modulePath) {
+    var result;
+    log("gitmodule.deinitSubmodule");
+    result = (await git(base).raw(['submodule', 'deinit', '-f', '--', modulePath]));
+    return result;
+  };
+
+  gitmodule.rmCached = async function(base, path) {
+    var result;
+    log("gitmodule.rmCached");
+    result = (await git(base).raw(['rm', '--cached', '-r', path]));
+    return result;
+  };
+
+  gitmodule.getGitRoot = async function(base) {
+    var result;
+    log("gitmodule.getGitRoot");
+    result = (await git(base).raw(['rev-parse', '--show-toplevel']));
+    return result;
+  };
+
+  gitmodule.getOriginURL = async function(base) {
+    var result;
+    log("gitmodule.getOriginURL");
+    result = (await git(base).raw(['config', '--get', 'remote.origin.url']));
+    return result;
   };
 
   //endregion
